@@ -9,7 +9,7 @@ localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env pyth
 
 #Benoit : build the image instead
 #dockerhub_base=ansible
-add use_container_for_build=true
+use_container_for_build=true
 # Openshift Install
 # Will need to set -e openshift_password=developer -e docker_registry_password=$(oc whoami -t)
 #           or set -e openshift_token=TOKEN
