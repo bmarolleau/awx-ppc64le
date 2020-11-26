@@ -11,7 +11,7 @@ ARG VENV_BASE="{% if not build_dev|bool %}/var/lib/awx{% endif %}/venv"
 ARG COLLECTION_BASE="{% if not build_dev|bool %}/var/lib/awx{% endif %}/vendor/awx_ansible_collections"
 
 # Build container
-FROM centos:8 
+FROM ppc64le/centos:8 
 #BENOIT remove multistage bug takes forever - as builder
 
 ARG VENV_BASE
@@ -157,7 +157,7 @@ RUN curl -L -o /usr/bin/tini https://github.com/krallin/tini/releases/download/v
 
 RUN python3 -m ensurepip && pip3 install "virtualenv < 20" supervisor {% if build_dev|bool %}flake8{% endif %}
 
-RUN rm -rf /root/.cache && rm -rf /tmp/*
+#BENOIT multistage off RUN rm -rf /root/.cache && rm -rf /tmp/*
 
 # Install OpenShift CLI
 RUN cd /usr/local/bin && \
@@ -251,7 +251,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/bin/bash"]
 {% else %}
 USER 1000
-EXPOSE 8052
+EXPOSE 8052 22
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD /usr/bin/launch_awx.sh
