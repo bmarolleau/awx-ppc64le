@@ -1,5 +1,5 @@
 Fork for ppc64le, below, the original links and instructions.
-Quick intructions for OpenShift deployment: first oc login , podman login then execute the following playbook:
+- For OpenShift deployment: `oc login` , `podman login` then execute the following playbook:
 
 `ansible-playbook -vvv -i inventory install.yml -e openshift_password=redhat  -e docker_registry_password=$(oc whoami -t) -e tini_architecture=ppc64le -e kubectl_architecture=ppc64le `
 
