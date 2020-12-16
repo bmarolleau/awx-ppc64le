@@ -1,6 +1,10 @@
-[![Gated by Zuul](https://zuul-ci.org/gated.svg)](https://ansible.softwarefactory-project.io/zuul/status)
+Fork for ppc64le, below, the original links and instructions.
+Quick intructions for OpenShift deployment: first oc login , podman login then execute the following playbook:
 
-<img src="https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg?sanitize=true" width=200 alt="AWX" />
+`ansible-playbook -vvv -i inventory install.yml -e openshift_password=redhat  -e docker_registry_password=$(oc whoami -t) -e tini_architecture=ppc64le -e kubectl_architecture=ppc64le `
+
+AWX
+---
 
 AWX provides a web-based user interface, REST API, and task engine built on top of [Ansible](https://github.com/ansible/ansible). It is the upstream project for [Tower](https://www.ansible.com/tower), a commercial derivative of AWX.  
 
